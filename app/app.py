@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 
-model = load_model('')
+model = load_model('../training/crop_disease_efficientnet_finetuned_data_aug_V2.keras')
 
 
 os.makedirs('uploads', exist_ok=True)
