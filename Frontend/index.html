@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgricureAI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>AgricureAI</h1>
+        <p>Your AI partner for diagnosing crop diseases</p>
+    </header>
+    <main>
+        <section class="upload-section">
+            <h2>Upload Affected Crop Image</h2>
+            <input type="file" id="crop-image" accept="image/*">
+            <p id="error-message" style="color: red; display: none;">Please upload a valid image file.</p>
+        </section>
+        <section class="crop-name-section">
+            <h2>Enter Crop Name</h2>
+            <input type="text" id="crop-name" placeholder="e.g., Tomato, Maize" required>
+        </section>
+        <button id="submit-btn">Submit</button>
+        <section class="results-section" id="results">
+            <h2>Results</h2>
+            <p>No results yet. Upload an image and provide the crop name to analyze.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 AgricureAI</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
