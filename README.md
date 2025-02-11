@@ -43,8 +43,8 @@ Before running the application, ensure you have the following installed:
 ### Steps
 
 1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/crop-disease/crop-disease.git
+   ```bash[
+   git clone (https://github.com/Rickmwasofficial/crop-disease.git)
    cd crop-disease
 
 Model Details
