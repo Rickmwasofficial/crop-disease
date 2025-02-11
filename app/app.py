@@ -8,10 +8,15 @@ import os
 app = Flask(__name__)
 
 #Replace the 'crop_disease_model.h5' with the path to the trained model file.
-model = tf.keras.models.load_model('crop_disease_model.h5')
+model = tf.keras.models.load_model('/')
 
 
-class_names = ['Healthy', 'Disease1', 'Disease2', 'Disease3']
+class_names = [
+    'gray_leaf_spot',
+    'common_rust_',
+    'healthy',
+    'northern_leaf_blight'
+]
 
 
 # Serve the index.html file
