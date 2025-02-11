@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 import tensorflow as tf
 from PIL import Image
 import numpy as np
