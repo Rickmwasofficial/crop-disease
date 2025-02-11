@@ -1,7 +1,5 @@
 # Crop Disease Detection with AgricureAI
 
-![AgricureAI Logo](path/to/logo.png)
-
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Features](#features)
@@ -46,8 +44,8 @@ Before running the application, ensure you have the following installed:
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/crop-disease-detection.git
-   cd crop-disease-detection
+   git clone https://github.com/crop-disease/crop-disease.git
+   cd crop-disease
 
 Model Details
 The AI model used in this project is based on the EfficientNet architecture, fine-tuned for crop disease detection. The following versions were trained and tested:
