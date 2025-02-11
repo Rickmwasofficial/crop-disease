@@ -8,7 +8,7 @@ import os
 app = Flask(__name__)
 
 #Replace the 'crop_disease_model.h5' with the path to the trained model file.
-model = tf.keras.models.load_model('/')
+model = tf.keras.models.load_model('/training/crop_disease_efficientnet_finetuned_V1.keras')
 
 
 class_names = [
