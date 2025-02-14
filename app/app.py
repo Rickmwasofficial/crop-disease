@@ -5,8 +5,50 @@ import numpy as np
 import os
 from werkzeug.utils import secure_filename
 import time
+import requests
+import json
+import google.generativeai as genai
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
+genai.configure(api_key=os.getenv('GEMINI_API'))
+
+# Create the gemini model
+generation_config = {
+  "temperature": 1,
+  "top_p": 0.95,
+  "top_k": 40,
+  "max_output_tokens": 8192,
+}
+
+gemi = genai.GenerativeModel(
+  model_name="gemini-2.0-flash",
+  generation_config=generation_config,
+  system_instruction="""
+    Return a direct, formatted markdown response without any introductory sentences or acknowledgments. 
+    When given information about a crop disease:
+    - Start immediately with a level 2 heading '## Causes'
+    - Follow with the causes of the disease in clear, simple language
+    - Then add a level 2 heading '## Solutions'
+    - List practical solutions with bullet points
+    - Add a level 2 heading '## Prevention'
+    - Provide prevention measures with bullet points
+    - End with a level 2 heading '## Sources'
+    - List 2-3 credible sources as links
+
+    If the crop is healthy, start with a level 2 heading '## Maintaining Healthy {crop}' and provide advice.
+    Use simple, accessible language throughout.
+    """,
+)
+
+chat_session = gemi.start_chat(
+  history=[
+    
+  ]
+)
 
 # Configuration
 UPLOAD_FOLDER = 'uploaded_images'
@@ -101,12 +143,16 @@ def predict():
         confidence = float(preds[0][predicted_class_index])
 
         # Clean up - optionally remove the uploaded file
-        # os.remove(image_path)  # Uncomment if you want to delete files after prediction
+        os.remove(image_path)  
+
+
+        gemini_response = chat_session.send_message(f'The crop is {crop_name} and the disease is {predicted_class}').text
 
         return jsonify({
             'crop': crop_name,
             'disease': predicted_class,
-            'confidence': confidence
+            'confidence': confidence,
+            "gemini": gemini_response
         })
 
     except Exception as e:
