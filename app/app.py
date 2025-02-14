@@ -101,6 +101,11 @@ def upload_file():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+# Route to serve uploaded images
+@app.route('/uploaded_images/<filename>')
+def serve_uploaded_image(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
@@ -118,6 +123,11 @@ def predict():
             return jsonify({'error': 'Image file not found'}), 404
 
         img = tf.io.read_file(image_path)
+
+        # Extract the filename from the full path
+        filename = os.path.basename(image_path)
+        image_url = f"https://turbo-space-dollop-4j75xv9p9jvxf77xg-5000.app.github.dev/uploaded_images/{filename}"
+        print(f"Predict endpoint generated URL: {image_url}")
 
         # Decode the image into a tensor
         img = tf.image.decode_image(img, channels=3)  # Ensure 3 channels (RGB)
@@ -143,7 +153,7 @@ def predict():
         confidence = float(preds[0][predicted_class_index])
 
         # Clean up - optionally remove the uploaded file
-        os.remove(image_path)  
+        # os.remove(image_path)  
 
 
         gemini_response = chat_session.send_message(f'The crop is {crop_name} and the disease is {predicted_class}').text
@@ -152,7 +162,8 @@ def predict():
             'crop': crop_name,
             'disease': predicted_class,
             'confidence': confidence,
-            "gemini": gemini_response
+            "gemini": gemini_response,
+            "img_url": image_url
         })
 
     except Exception as e:
