@@ -50,7 +50,7 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
         }
 
         // Now send the prediction request with the saved image path
-        const predictionResponse = await fetch('https://turbo-space-dollop-4j75xv9p9jvxf77xg-5000.app.github.dev/predict', {
+        const predictionResponse = await fetch('https://crop-disease-49ld.onrender.com/predict', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
