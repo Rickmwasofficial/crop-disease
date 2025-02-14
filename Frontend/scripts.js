@@ -3,6 +3,7 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
     const cropNameInput = document.getElementById('crop-name');
     const errorMessage = document.getElementById('error-message');
     const resultsSection = document.getElementById('results');
+    const img_section = document.getElementById('img-display')
 
     errorMessage.style.display = 'none';
     resultsSection.innerHTML = '';
@@ -50,7 +51,7 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
         }
 
         // Now send the prediction request with the saved image path
-        const predictionResponse = await fetch('https://crop-disease-49ld.onrender.com/predict', {
+        const predictionResponse = await fetch('https://turbo-space-dollop-4j75xv9p9jvxf77xg-5000.app.github.dev/predict', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -62,7 +63,11 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
         });
 
         const result = await predictionResponse.json();
-
+        img_section.innerHTML = result.img_url 
+        ? `<div class="image-preview">
+             <img src="${result.img_url}" alt="Uploaded crop image" style="width: 100%; max-height: auto; margin-bottom: 20px;">
+           </div>`
+        : '<p>Image preview not available</p>';
         if (predictionResponse.ok) {
             resultsSection.innerHTML = `
                 <h3>Prediction Result:</h3>
