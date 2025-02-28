@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgricureAI - Intelligent Crop Diagnosis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-container">
+            <div class="branding">
+                <i class="fas fa-robot logo-icon"></i>
+                <div class="titles">
+                    <h1 class="main-title">AgricureAI</h1>
+                    <p class="subtitle">AI-Powered Crop Protection System</p>
+                </div>
+            </div>
+            <nav class="status-indicators">
+                <div class="status-item">
+                    <i class="fas fa-cloud status-icon"></i>
+                    <span class="status-text">API Connected</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="input-container">
+            <article class="input-card">
+                <div class="input-group">
+                    <label class="file-upload-label">
+                        <input type="file" id="crop-image" accept="image/*" hidden>
+                        <div class="upload-area">
+                            <i class="fas fa-file-upload upload-icon"></i>
+                            <div class="upload-text">
+                                <h2 class="upload-title">Upload Crop Image</h2>
+                                <p class="upload-instructions">JPEG, PNG, or GIF (Max 5MB)</p>
+                            </div>
+                        </div>
+                    </label>
+                    <p id="error-message" class="error-message" aria-live="polite"></p>
+                </div>
+
+                <div class="input-group">
+                    <label class="text-input-label">
+                        <span class="input-icon"><i class="fas fa-leaf"></i></span>
+                        <input type="text" 
+                               id="crop-name" 
+                               class="crop-input" 
+                               placeholder="Enter crop species (e.g., Oryza sativa)"
+                               aria-label="Crop species input"
+                               required>
+                    </label>
+                </div>
+
+                <button id="submit-btn" class="primary-action-btn" aria-label="Analyze crop health">
+                    <span class="btn-content">
+                        <i class="fas fa-microscope btn-icon"></i>
+                        Analyze Crop Health
+                    </span>
+                </button>
+            </article>
+
+            <aside class="visualization-panel">
+                <div class="image-preview-card">
+                    <h2 class="preview-title">Visual Analysis Preview</h2>
+                    <div id="img-display" class="image-preview-container" aria-live="polite">
+                        <div class="preview-placeholder">
+                            <i class="fas fa-seedling placeholder-icon"></i>
+                            <p class="placeholder-text">Image preview will appear here</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <section class="results-container" aria-labelledby="results-heading">
+            <div class="results-header">
+                <h2 id="results-heading" class="results-title">Diagnostic Report</h2>
+                <div class="results-controls">
+                    <button class="export-btn" aria-label="Export report">
+                        <i class="fas fa-file-export"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="results" class="results-content" role="region" aria-live="polite">
+                <div class="empty-state">
+                    <i class="fas fa-clipboard-list empty-icon"></i>
+                    <p class="empty-text">Awaiting analysis input...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="footer-container">
+            <p class="copyright">&copy; 2024 AgricureAI. Advancing Precision Agriculture.</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link" aria-label="Documentation">
+                    <i class="fas fa-book-open"></i>
+                </a>
+                <a href="#" class="footer-link" aria-label="GitHub repository">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="footer-link" aria-label="Contact support">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
