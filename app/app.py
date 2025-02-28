@@ -1,6 +1,11 @@
 from flask import Flask, request, jsonify, send_from_directory, url_for
 import tensorflow as tf
-from tensorflow.keras.models import load_model
+# from tensorflow.keras.models import load_model
+import sys
+from pathlib import Path
+
+# Add the project root directory to sys.path
+sys.path.append(str(Path(__file__).resolve().parent.parent))
 import numpy as np
 import os
 from werkzeug.utils import secure_filename
@@ -127,7 +132,7 @@ def predict():
 
         # Extract the filename from the full path
         filename = os.path.basename(image_path)
-        image_url = f"https://turbo-space-dollop-4j75xv9p9jvxf77xg-5000.app.github.dev/uploaded_images/{filename}"
+        image_url = f"https://xm7l402n-5000.uks1.devtunnels.ms/uploaded_images/{filename}"
         print(f"Predict endpoint generated URL: {image_url}")
 
         # Decode the image into a tensor
@@ -159,6 +164,10 @@ def predict():
 
         gemini_response = chat_session.send_message(f'The crop is {crop_name} and the disease is {predicted_class}').text
         meaningful_insights= get_disease_insights(predicted_class)
+        print("Meaningful Insights: ", meaningful_insights)
+        print("Gemini Response:",gemini_response)
+        print("Image Url:",image_url)
+        print("Predicted Class:",predicted_class)
 
         return jsonify({
             'crop': crop_name,
